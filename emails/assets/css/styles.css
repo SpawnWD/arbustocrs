@@ -1,0 +1,353 @@
+/* Reset margin and padding for all elements */
+
+{
+
+	margin: 0;
+
+	padding: 0;
+
+}
+
+
+/* Tell the browser to render HTML 5 elements as block */
+
+header, footer, aside, nav, article {
+
+	display: block;
+}
+body {
+
+	margin: 0 auto;
+	width: 80%;
+
+	font: 13px/22px Helvetica, Arial, sans-serif;
+
+	background: #ffffff
+
+}
+
+
+iframe {
+
+	width: 100%;
+
+	border: 2px solid #ccc;
+
+}
+
+.clear {
+
+	clear: both;
+
+}
+
+nav {
+
+	width: 100%;
+
+}
+
+nav ul li {
+
+	float: left;
+
+	list-style: none;
+
+}
+
+nav ul li a {
+
+	display: block;
+
+	margin-right: 20px;
+
+	width: 180px;
+
+	font-size: 14px;
+
+	line-height: 44px;
+
+	text-align: center;
+
+	text-decoration: none;
+
+	background: #FF6600;
+
+	color: #ffffff;
+
+	
+	-moz-border-radius: 8px;
+
+	border-radius: 8px;
+
+	
+	box-shadow: 1px 1px 4px #666;
+
+	-moz-box-shadow: 1px 1px 4px #666;
+
+	-webkit-box-shadow: 1px 1px 4px #666;
+
+	-o-box-shadow: 1px 1px 4px #666;
+
+	filter:  progid:DXImageTransform.Microsoft.dropshadow(OffX=0px, OffY=2px, Color='#999999');
+ /* IE6,IE7 */
+
+	-ms-filter: "progid:DXImageTransform.Microsoft.dropshadow(OffX=0px, OffY=2px, Color='#999999')";
+ /* IE8 */
+
+	
+	transform:rotate(-2deg);
+
+	-moz-transform:rotate(-2deg);
+
+	-webkit-transform:rotate(-2deg);
+
+	-o-transform::rotate(-2deg);
+  
+	-ms-transform: rotate(-2deg);
+
+	filter:  progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=0.9914448613738104, M12=-0.13052619222005157, M21=0.13052619222005157, M22=0.9914448613738104);
+ 
+	-ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=0.9914448613738104, M12=-0.13052619222005157, M21=0.13052619222005157, M22=0.9914448613738104,sizingMethod='auto expand')";
+
+             
+
+}
+
+nav ul li a:hover {
+
+	background: #4461A6;
+
+	color: #ffffff;
+
+}
+#divforma {
+	display: table;
+	width: 100%;
+}
+#InicioSesion {
+	display: table;
+	text-align: center;
+	vertical-align: middle;
+
+	margin: 5px 0;
+
+	width: 100%;
+
+	padding: 5px;
+}
+#perfil {
+	display: table;
+	vertical-align: middle;
+        horizontal-align: center;
+
+	margin: 5px 0;
+
+	width: 50%;
+
+	padding: 5px;
+}
+#logotipo {
+
+	display: table;
+
+	margin: 5px 0;
+
+	width: 100%;
+
+	padding: 5px;
+
+	
+	-moz-border-radius: 8px;
+
+	border-radius: 8px;
+
+	
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#FF6600');
+
+	background: -moz-linear-gradient(top, #FF6600, #FFFFFF);
+ 
+	background: -webkit-gradient(linear,left top,left bottom,color-stop(0, #FF6600),color-stop(1, #FFFFFF));
+
+	
+	-webkit-box-sizing: border-box;
+
+	-moz-box-sizing: border-box;
+
+	box-sizing: border-box;
+
+	-ms-box-sizing: border-box;
+
+}
+
+#barra {
+
+	display: table;
+
+	margin: 5px 0;
+
+	width: 100%;
+
+	padding: 5px;
+
+	
+	-moz-border-radius: 8px;
+
+	border-radius: 8px;
+
+	
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#553193');
+
+	background: -moz-linear-gradient(top, #FF6600, #FFFFFF);
+ 
+	background: -webkit-gradient(linear,left top,left bottom,color-stop(0, #ffffff),color-stop(1, #553193));
+
+	
+	-webkit-box-sizing: border-box;
+
+	-moz-box-sizing: border-box;
+
+	box-sizing: border-box;
+
+	-ms-box-sizing: border-box;
+
+}
+
+
+
+#intro {
+
+	display: table;
+
+	margin: 5px 0;
+
+	width: 100%;
+
+	padding: 5px;
+
+	
+	-moz-border-radius: 8px;
+
+	border-radius: 8px;
+
+	
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#FF6600');
+
+	background: -moz-linear-gradient(top, #FF6600, #FFFFFF);
+ 
+	background: -webkit-gradient(linear,left top,left bottom,color-stop(0, #553193),color-stop(1, #FF6600));
+
+	
+	-webkit-box-sizing: border-box;
+
+	-moz-box-sizing: border-box;
+
+	box-sizing: border-box;
+
+	-ms-box-sizing: border-box;
+
+}
+table {
+    border-collapse: collapse;
+    width: 90%;
+    border: 1px solid #553193;
+}
+#table2 {
+    border-collapse: collapse;
+    width: 50%;
+    border: 1px solid white;
+}
+td {
+    border: 1px solid #553193;
+    padding: 3px;
+    color: #4461A6;
+}
+th {
+    background-color: #FF6600;
+    color: white;
+    border: 1px solid #553193;
+    padding: 3px;
+}
+#th2 {
+    background-color: white;
+    color: #ec7405;
+    border: 1px solid white;
+    padding: 3px;
+}
+#th3 {
+    border-collapse: collapse;
+    width: 50%;
+    border: 1px solid #FF6600;
+}
+#td2 {
+    background-color: white;
+    border: 1px solid white;
+    padding: 3px;
+    color: #553193;
+}
+
+
+@font-face {
+
+    font-family: CooperBlack;
+
+    src: url('https://asicompras.com/wsac/emails/assets/fonts/COOPBL.TTF');
+
+	src: local('CooperBlack'), url(https://asicompras.com/wsac/emails/assets/fonts/COOPBL.TTF) format("truetype");
+
+}
+
+.coopbl {
+
+  font-family: CooperBlack, yanone, Verdana, Arial, Helvetica, sans-serif;
+
+}
+
+
+#content {
+
+	display: table;
+
+	margin: 5px 0;
+
+	width: 100%;
+
+	padding: 5px;
+
+}
+
+
+#articles {
+
+	display: table-cell;
+
+	width: 620px;
+
+	padding-right: 20px;
+
+}
+
+aside {
+
+	display: table-cell;
+
+	width: 300px;
+
+}
+
+
+#editable {
+
+	width: 100%;
+
+	line-height: 16px;
+
+}
+
+#editable:hover {
+
+	outline: 1px dotted #cccccc;
+
+	outline-offset: 10px;
+
+}

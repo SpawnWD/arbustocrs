@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="getTIM">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tp" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getTIMResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getTIMResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getTIMPer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tp" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dINI" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dFIN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getTIMPerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getTIMPerResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getSALDOS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tp" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getSALDOSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getSALDOSResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getSN">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="op" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="data" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getSNResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="getSNResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getSN2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="op" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="data" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="moc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getSN2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="getSN2Result" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="resBD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="resBDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="resBDResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="getTIMSoapIn">
+    <wsdl:part name="parameters" element="tns:getTIM" />
+  </wsdl:message>
+  <wsdl:message name="getTIMSoapOut">
+    <wsdl:part name="parameters" element="tns:getTIMResponse" />
+  </wsdl:message>
+  <wsdl:message name="getTIMPerSoapIn">
+    <wsdl:part name="parameters" element="tns:getTIMPer" />
+  </wsdl:message>
+  <wsdl:message name="getTIMPerSoapOut">
+    <wsdl:part name="parameters" element="tns:getTIMPerResponse" />
+  </wsdl:message>
+  <wsdl:message name="getSALDOSSoapIn">
+    <wsdl:part name="parameters" element="tns:getSALDOS" />
+  </wsdl:message>
+  <wsdl:message name="getSALDOSSoapOut">
+    <wsdl:part name="parameters" element="tns:getSALDOSResponse" />
+  </wsdl:message>
+  <wsdl:message name="getSNSoapIn">
+    <wsdl:part name="parameters" element="tns:getSN" />
+  </wsdl:message>
+  <wsdl:message name="getSNSoapOut">
+    <wsdl:part name="parameters" element="tns:getSNResponse" />
+  </wsdl:message>
+  <wsdl:message name="getSN2SoapIn">
+    <wsdl:part name="parameters" element="tns:getSN2" />
+  </wsdl:message>
+  <wsdl:message name="getSN2SoapOut">
+    <wsdl:part name="parameters" element="tns:getSN2Response" />
+  </wsdl:message>
+  <wsdl:message name="resBDSoapIn">
+    <wsdl:part name="parameters" element="tns:resBD" />
+  </wsdl:message>
+  <wsdl:message name="resBDSoapOut">
+    <wsdl:part name="parameters" element="tns:resBDResponse" />
+  </wsdl:message>
+  <wsdl:portType name="wsMoonSoap">
+    <wsdl:operation name="getTIM">
+      <wsdl:input message="tns:getTIMSoapIn" />
+      <wsdl:output message="tns:getTIMSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getTIMPer">
+      <wsdl:input message="tns:getTIMPerSoapIn" />
+      <wsdl:output message="tns:getTIMPerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getSALDOS">
+      <wsdl:input message="tns:getSALDOSSoapIn" />
+      <wsdl:output message="tns:getSALDOSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getSN">
+      <wsdl:input message="tns:getSNSoapIn" />
+      <wsdl:output message="tns:getSNSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getSN2">
+      <wsdl:input message="tns:getSN2SoapIn" />
+      <wsdl:output message="tns:getSN2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="resBD">
+      <wsdl:input message="tns:resBDSoapIn" />
+      <wsdl:output message="tns:resBDSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="wsMoonSoap" type="tns:wsMoonSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getTIM">
+      <soap:operation soapAction="http://tempuri.org/getTIM" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTIMPer">
+      <soap:operation soapAction="http://tempuri.org/getTIMPer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSALDOS">
+      <soap:operation soapAction="http://tempuri.org/getSALDOS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSN">
+      <soap:operation soapAction="http://tempuri.org/getSN" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSN2">
+      <soap:operation soapAction="http://tempuri.org/getSN2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="resBD">
+      <soap:operation soapAction="http://tempuri.org/resBD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="wsMoonSoap12" type="tns:wsMoonSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getTIM">
+      <soap12:operation soapAction="http://tempuri.org/getTIM" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTIMPer">
+      <soap12:operation soapAction="http://tempuri.org/getTIMPer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSALDOS">
+      <soap12:operation soapAction="http://tempuri.org/getSALDOS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSN">
+      <soap12:operation soapAction="http://tempuri.org/getSN" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSN2">
+      <soap12:operation soapAction="http://tempuri.org/getSN2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="resBD">
+      <soap12:operation soapAction="http://tempuri.org/resBD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="wsMoon">
+    <wsdl:port name="wsMoonSoap" binding="tns:wsMoonSoap">
+      <soap:address location="http://recargaselltesting.ddns.net/wsMoon/wsMoon.asmx" />
+    </wsdl:port>
+    <wsdl:port name="wsMoonSoap12" binding="tns:wsMoonSoap12">
+      <soap12:address location="http://recargaselltesting.ddns.net/wsMoon/wsMoon.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

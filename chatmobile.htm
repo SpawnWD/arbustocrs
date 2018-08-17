@@ -1,0 +1,68 @@
+<html>
+	<head>
+	</head>
+	<body>
+<script type="text/javascript">
+function LeeVariable(variable){
+	var tipo = typeof variable;
+	var direccion = decodeURI(location.href);
+	if (tipo == "string"){
+		var posicion = direccion.indexOf("?");
+		posicion = direccion.indexOf(variable,posicion) + variable.length;
+	}
+	else if (tipo == "number"){
+		var posicion=0;
+		for (var contador = 0 ; contador < variable + 1 ; contador++){
+			posicion = direccion.indexOf("=",++posicion);
+			if (posicion == -1)posicion=999;
+		} 
+	}
+	if (direccion.charAt(posicion) == "="){
+		var final = direccion.indexOf("&",posicion);
+		if (final == -1){final=direccion.length;};
+		return direccion.substring(posicion + 1,final);
+	}
+}
+
+var name = LeeVariable(0);
+//alert(hash);
+var email = LeeVariable(1);
+//alert(email);
+
+Tawk_API = Tawk_API || {};
+	Tawk_API.visitor = {
+		name  : name,
+		email : email,
+		//hash  : hash
+	};
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/57ec0e5081b5df649ae7d136/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+
+Tawk_API.onLoad = function(){
+	/*const visitor = { 
+		name: "dwq", 
+		email: email, 
+		hash: hash
+	} 
+	Tawk_API.setAttributes(visitor);
+	*/
+	Tawk_API.maximize();
+};
+Tawk_API.onChatMinimized = function(){
+	alert("maximizar");
+	Tawk_API.maximize();
+};
+Tawk_API.onBeforeLoad = function(){
+	
+};
+</script>
+
+	</body>
+</html>

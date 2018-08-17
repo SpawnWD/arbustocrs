@@ -1,0 +1,268 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ClientesAltas.aspx.cs" Inherits="MasTicket.ClientesAltas" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    	<!-- /TOP NAV -->
+        <span id="header_shadow"></span>
+        <asp:Label runat="server" id="spnJS" Text=""></asp:Label>
+		<!-- WRAPPER -->
+<!------------------------------------------------------------------------------------------------------------>
+        <div id="wrapper" style="background:rgba(0,0,0,0.2);">
+        <section class="container top-no-header">
+            <div class="row">
+                    <div class="col-md-12">
+                        <div class="white-row">
+                            <h2><i class="fa fa-clock-o"></i> <strong>Reporte de usuarios</strong></h2>
+                                <div class="container">
+                                    <div class="row">
+                                        <asp:Button CssClass="btn default btn-xs btn-primary white" Text="Consultar" runat="server" id="btnConsultar" />
+                                        &nbsp;<asp:Button ID="btnExcel" CssClass="btn default btn-xs btn-primary white" Text="Exportar a Excel" runat="server" />
+                                    </div>
+                                </div>
+
+                                <div class="table-responsive">
+                                <table runat="server" id="tbReporte" class="table table-sm table-striped table-hover">
+                                    <thead><tr>
+                                        <th>ID</th>
+                                        <th>Fecha Alta</th>
+                                        <th>Fecha prim compra</th>
+                                        <th>Fecha ult compra</th>
+                                        <th>Num recargas</th>
+                                        <th>Nombre</th>
+                                        <th>Email</th>
+                                        <th>Numero Contacto</th>
+                                    </tr></thead>
+                                    <tbody>
+                                        
+                                    </tbody>
+                                </table>
+                                </div>
+                                     <div class="table-responsive">
+                                           <table runat="server" id="Table2" class="table table-sm table-striped table-hover">
+                                              <thead>
+                                               <tr>
+                                                  <td><canvas id="DIARIO_ALTA" > </canvas></td>
+                                                   <td><canvas id="DIARIO_VENTAS" > </canvas></td>
+                                              </tr>
+                                              <tr>
+                                                  <td><canvas id="SEMANAL_ALTA" > </canvas></td>
+                                                  <td><canvas id="SEMANAL_VENTA"> </canvas></td>
+                                              </tr>
+                                                  
+                                              <tr>
+                                                  <td><canvas id="MES_ALTA" > </canvas></td>
+                                                  <td><canvas id="MES_VENTA"> </canvas></td>
+                                              </tr>
+ </thead>
+                                          </table>
+                                            
+                                      </div>
+                                <div class="form-group">
+                                    <hr class="margin-top10 margin-bottom10" /><!-- separator -->
+                                    <!--<a href="datosrecarga.aspx" class="btn btn-primary">Atrás</a>
+                                        <asp:Button runat="server" id="btnConfirma" Text="Siguiente" class="btn btn-primary pull-right push-bottom" />
+                                    -->
+                                </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+        </div>
+ <script>
+     $(document).ready(function() {
+     /*
+      iData.Add(labelsDiario);
+            iData.Add(labelsSem);
+            iData.Add(labelsMensual);
+            iData.Add(lst_dataSemanalAltas);
+            iData.Add(lst_dataSemanalVentas);
+            iData.Add(lst_dataMensualAltas);
+            iData.Add(lst_dataMensualVentas);
+            iData.Add(lst_dataDiarioAltas);
+            iData.Add(lst_dataDiarioVentas);
+     */
+       //  $("#ContentPlaceHolder1_btnConsultar").on('click', function () {
+             Chart.defaults.global.defaultFontFamily = "Lato";
+             Chart.defaults.global.defaultFontSize = 18;
+             $.ajax({
+                 type: "POST",
+                 url: "ClientesAltas.aspx/RefreshC",
+                 contentType: "application/json; charset=utf-8",
+                 dataType: "json",
+                 data: "",
+                 success: OnSuccess_,
+                 error: OnErrorCall_
+             });
+
+             function OnSuccess_(reponse) {
+                 var aData = reponse.d;
+                 var aLabelsD = aData[0];
+                 var aLabelsS = aData[1];
+                 var aLabelsM= aData[2];
+
+                 var DiaAltas = aData[7];
+                 var DiaVentas = aData[8];
+                 var SemAltas = aData[3];
+                 var SemVentas = aData[4];
+                 var MesAltas = aData[5];
+                 var MesVentas = aData[6];
+
+                 var dataDA = {
+                     labels: aLabelsD,
+                     datasets: [{
+                         label: "Altas por dia",
+                         backgroundColor: 'rgba(0, 99, 132, 0.6)',
+                         fillColor: "rgba(220,220,220,0.2)",
+                         strokeColor: "rgba(146,146,223,1)",
+                         pointBorderColor: 'red',
+                         pointColor: "rgba(220,220,220,1)",
+                         pointStrokeColor: "#fff",
+                         pointHighlightFill: "#fff",
+                         pointHighlightStroke: "rgba(220,220,220,1)",
+                         data: DiaAltas
+                     }
+                     ]
+                 };
+                 var datDV = {
+                     labels: aLabelsD,
+                     datasets: [{
+                         label: "Operaciones por dia",
+                         backgroundColor: "rgba(180, 99, 132, 1)",
+                         fillColor: "rgba(220,220,220,0.2)",
+                         strokeColor: "rgba(146,146,223,1)",
+                         pointBorderColor: 'red',
+                         pointColor: "rgba(220,220,220,1)",
+                         pointStrokeColor: "#fff",
+                         pointHighlightFill: "#fff",
+                         pointHighlightStroke: "rgba(220,220,220,1)",
+                         data: DiaVentas
+                     }]
+                 };
+                 var dataSA = {
+                     labels: aLabelsD,
+                     datasets: [{
+                         label: "Altas por semana",
+                         backgroundColor: 'rgba(0, 99, 132, 0.6)',
+                         fillColor: "rgba(220,220,220,0.2)",
+                         strokeColor: "rgba(146,146,223,1)",
+                         pointBorderColor: 'red',
+                         pointColor: "rgba(220,220,220,1)",
+                         pointStrokeColor: "#fff",
+                         pointHighlightFill: "#fff",
+                         pointHighlightStroke: "rgba(220,220,220,1)",
+                         data: SemAltas
+                     }
+                     ]
+                 };
+                 var datSV = {
+                     labels: aLabelsD,
+                     datasets: [{
+                         label: "Operaciones por semana",
+                         backgroundColor: "rgba(180, 99, 132, 1)",
+                         fillColor: "rgba(220,220,220,0.2)",
+                         strokeColor: "rgba(146,146,223,1)",
+                         pointBorderColor: 'red',
+                         pointColor: "rgba(220,220,220,1)",
+                         pointStrokeColor: "#fff",
+                         pointHighlightFill: "#fff",
+                         pointHighlightStroke: "rgba(220,220,220,1)",
+                         data: SemVentas
+                     }]
+                 };
+                 var dataMA = {
+                     labels: aLabelsD,
+                     datasets: [{
+                         label: "Altas por mes",
+                         backgroundColor: 'rgba(0, 99, 132, 0.6)',
+                         fillColor: "rgba(220,220,220,0.2)",
+                         strokeColor: "rgba(146,146,223,1)",
+                         pointBorderColor: 'red',
+                         pointColor: "rgba(220,220,220,1)",
+                         pointStrokeColor: "#fff",
+                         pointHighlightFill: "#fff",
+                         pointHighlightStroke: "rgba(220,220,220,1)",
+                         data: MesAltas
+                     }
+                     ]
+                 };
+                 var datMV = {
+                     labels: aLabelsD,
+                     datasets: [{
+                         label: "Operaciones por mes",
+                         backgroundColor: "rgba(180, 99, 132, 1)",
+                         fillColor: "rgba(220,220,220,0.2)",
+                         strokeColor: "rgba(146,146,223,1)",
+                         pointBorderColor: 'red',
+                         pointColor: "rgba(220,220,220,1)",
+                         pointStrokeColor: "#fff",
+                         pointHighlightFill: "#fff",
+                         pointHighlightStroke: "rgba(220,220,220,1)",
+                         data: MesVentas
+                     }]
+                 };
+                 var chartOptions = {
+                     legend: {
+                         display: true,
+                         position: 'top',
+                         labels: {
+                             boxWidth: 80,
+                             fontColor: 'black'
+                         }
+                     }
+                 };
+                 
+                 //  var ctx = $("#myChart").get(0).getContext('2d');
+                 // ctx.canvas.height = 300;  // setting height of canvas
+                 //ctx.canvas.width = 500; // setting width of canvas
+                 var ctx = document.getElementById("DIARIO_ALTA");
+                 var lineChart = new Chart(ctx, {
+                     type: 'bar',
+                     data: dataDA,
+                     options: chartOptions
+                 });
+
+                 var ctx2 = document.getElementById("DIARIO_VENTAS");
+                 var lineChart = new Chart(ctx2, {
+                     type: 'line',
+                     data: datDV,
+                     options: chartOptions
+                 });
+
+                 var ctx3 = document.getElementById("SEMANAL_ALTA");
+                 var lineChart = new Chart(ctx3, {
+                     type: 'bar',
+                     data: dataSA,
+                     options: chartOptions
+                 });
+
+                 var ctx4 = document.getElementById("SEMANAL_VENTA");
+                 var lineChart = new Chart(ctx4, {
+                     type: 'line',
+                     data: datSV,
+                     options: chartOptions
+                 });
+
+                 var ctx3 = document.getElementById("MES_ALTA");
+                 var lineChart = new Chart(ctx3, {
+                     type: 'bar',
+                     data: dataMA,
+                     options: chartOptions
+                 });
+                 var ctx3 = document.getElementById("MES_VENTA");
+                 var lineChart = new Chart(ctx3, {
+                     type: 'line',
+                     data: dataMV,
+                     options: chartOptions
+                 });
+                 //   var lineChart = new Chart(ctx).Line(data, {
+                 //     bezierCurve: false
+                 //});
+             }
+             function OnErrorCall_(repo) {
+                 alert("Woops something went wrong, pls try later !" + repo);
+             }
+         //});
+     });
+    
+ </script>
+</asp:Content>
+

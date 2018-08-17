@@ -1,0 +1,202 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.UI.HtmlControls;
+using Newtonsoft.Json;
+using System.Net.Sockets;
+using System.Net;
+using System.Data;
+using System.Text;
+using System.IO;
+using System.Globalization;
+using System.Web.Services;
+
+namespace MasTicket
+{
+    public partial class ClientesAltas : System.Web.UI.Page
+    {
+        wsac.IsacClient ws;
+        TarjetasViewModel tvm;
+        RecargasViewModel rvm;
+
+        protected void Page_PreRender()
+        {
+            ClientScript.GetPostBackEventReference(this, string.Empty);
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            //--------------------------------------------------------------------------------------------------
+            int idusr = 0;
+            if (!IsPostBack)
+            {
+                if (Session["idadminlogged"] != null)
+                {
+                    if (int.TryParse(Session["idadminlogged"].ToString(), out idusr))
+                    {
+                        if (idusr > 0)
+                        {
+                            ws = Session["wsac"] as wsac.IsacClient;
+                            string json = ws.GetAdmin(idusr, "", "");
+                            List<Usuario> lu = JsonConvert.DeserializeObject<List<Usuario>>(json);
+                            if (lu.Count > 0)
+                            {
+                                Session["adminlogged"] = lu.FirstOrDefault();
+                            }
+                            else
+                                Response.Redirect("index.aspx");
+                        }
+                        else
+                            Response.Redirect("index.aspx");
+                    }
+                    else
+                        Response.Redirect("index.aspx");
+                }
+            }
+            else
+            {
+                if (Request["__EVENTTARGET"] == "lnkSalir")
+                {
+                    Session["idadminlogged"] = 0;
+                    Session["adminlogged"] = null;
+                    Response.Redirect("index.aspx");
+                    Session.Abandon();
+                    Response.Cookies.Add(new HttpCookie("ASP.NET_SessionId", ""));
+                }
+            }
+
+            //-------------------------------------------------------------------------------------------------
+            if (!IsPostBack)
+            {
+                ws = Session["wsac"] as wsac.IsacClient;
+                if (tvm == null)
+                {
+                    tvm = new TarjetasViewModel();
+                    Session["tvm"] = tvm;
+                }
+                tvm.WS = ws;
+                tvm.Inicia();
+            }
+
+         /*   btnConsultar.Click += (s, ea) =>
+            {
+                Refresh();
+                spnJS.Text = "";
+            };*/
+            btnExcel.Click += (s, ea) =>
+            {
+                DumpExcel();
+                spnJS.Text = "";
+            };
+        }
+
+        private void DumpExcel()
+        {
+            ws = Session["wsac"] as wsac.IsacClient;
+            byte[] reporte = ws.ExportaRepUsr();
+            string saveAsFileName = "RepUsrs.xls";
+            Response.ContentType = "application/vnd.ms-excel";
+            Response.AddHeader("Content-Disposition", string.Format("attachment;filename={0}", saveAsFileName));
+            Response.Clear();
+            Response.BinaryWrite(reporte);
+            Response.End();
+        }
+        private static string obtieneD() {
+            wsac.IsacClient ws = HttpContext.Current.Session["wsac"] as wsac.IsacClient; 
+          //  ws = Session["wsac"] as wsac.IsacClient;
+            string json = ws.GetAClientes();
+            return json;
+        }
+        [WebMethod]
+        public static List<object> RefreshC()
+        {
+            List<object> iData = new List<object>();
+
+            //altas y ventas semanales
+            List<string> labelsDiario = new List<string>();
+            List<string> labelsSem = new List<string>();
+            List<string> labelsMensual = new List<string>();
+            List<int> lst_dataSemanalAltas = new List<int>();
+            List<double> lst_dataSemanalVentas = new List<double>();
+            List<int> lst_dataMensualAltas = new List<int>();
+            List<double> lst_dataMensualVentas = new List<double>();
+            List<int> lst_dataDiarioAltas = new List<int>();
+            List<double> lst_dataDiarioVentas = new List<double>();
+
+            string json = obtieneD();
+
+            List<AClientes> lsu = JsonConvert.DeserializeObject<List<AClientes>>(json);
+            CultureInfo ci = new CultureInfo("es-MX");
+            foreach (AClientes u in lsu)
+            {
+
+                labelsSem.Add(u.semana.ToString() + "_" + u.anio.ToString());
+                lst_dataSemanalAltas.Add(Convert.ToInt32(u.altas.ToString()));
+                lst_dataSemanalVentas.Add(Convert.ToDouble(u.ventasM.ToString()));
+            }
+
+            // altas y ventas mensuales
+          
+            wsac.IsacClient ws = HttpContext.Current.Session["wsac"] as wsac.IsacClient;
+
+            //altas mensuales=1  ventas mensuales=2
+            json = ws.GetMesDatos(1);
+
+            List<DatosMes> lsu2 = JsonConvert.DeserializeObject<List<DatosMes>>(json);
+            foreach (DatosMes u in lsu2)
+            {
+
+                labelsMensual.Add(u.mes.ToString() + "_" + u.anio.ToString());
+                lst_dataMensualAltas.Add(Convert.ToInt32(u.num.ToString()));
+               
+            }
+
+            json = ws.GetMesDatos(2);
+
+            lsu2 = JsonConvert.DeserializeObject<List<DatosMes>>(json);
+            foreach (DatosMes u in lsu2)
+            {
+
+                lst_dataMensualVentas.Add(Convert.ToDouble(u.num.ToString()));
+
+            }
+
+            // altas y ventas diarias
+            json = ws.GetDiaDatos(1);
+
+            List<DatosDias> lsu3 = JsonConvert.DeserializeObject<List<DatosDias>>(json);
+            foreach (DatosDias u in lsu3)
+            {
+
+                labelsMensual.Add(u.dia.ToString());
+                lst_dataDiarioAltas.Add(Convert.ToInt32(u.num.ToString()));
+
+            }
+
+            json = ws.GetDiaDatos(2);
+
+            lsu3 = JsonConvert.DeserializeObject<List<DatosDias>>(json);
+            foreach (DatosDias u in lsu3)
+            {
+                lst_dataDiarioVentas.Add(Convert.ToDouble(u.num.ToString()));
+
+            }
+            iData.Add(labelsDiario);
+            iData.Add(labelsSem);
+            iData.Add(labelsMensual);
+            iData.Add(lst_dataSemanalAltas);
+            iData.Add(lst_dataSemanalVentas);
+            iData.Add(lst_dataMensualAltas);
+            iData.Add(lst_dataMensualVentas);
+            iData.Add(lst_dataDiarioAltas);
+            iData.Add(lst_dataDiarioVentas);
+
+            return iData;
+        }
+
+    
+    }
+}
